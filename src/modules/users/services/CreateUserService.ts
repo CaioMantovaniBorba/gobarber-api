@@ -15,7 +15,7 @@ interface IRequest {
 @injectable()
 class CreateUserService {
   constructor(
-    @inject('UserRepository')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
@@ -26,7 +26,7 @@ class CreateUserService {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {
-      throw new AppError('Email address already used.');
+      throw new AppError('Email address already used');
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
